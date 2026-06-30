@@ -1,0 +1,50 @@
+---
+import Base from "./Base.astro";
+
+interface TocItem {
+  id: string;
+  label: string;
+}
+interface Props {
+  title: string;
+  description?: string;
+  kicker?: string;
+  lede?: string;
+  num?: string;
+  toc?: TocItem[];
+}
+const { title, description, kicker = "Digital report", lede, num, toc = [] } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <header class="page-head">
+    <div class="container page-head-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / <a href="/reports/">Reports</a> / {title}</div>
+      <span class="kicker">{num ? `Report ${num} · ` : ""}{kicker}</span>
+      <h1>{title}</h1>
+      {lede && <p class="lede">{lede}</p>}
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="sidebar-layout">
+        <article class="prose">
+          <slot />
+        </article>
+        <aside>
+          {toc.length > 0 && (
+            <nav class="toc">
+              <div class="toc-h">On this page</div>
+              {toc.map((t) => <a href={`#${t.id}`}>{t.label}</a>)}
+              <div class="toc-h" style="margin-top:24px;">More</div>
+              <a href="/crisis-index/">Crisis Index</a>
+              <a href="/dashboards/">Dashboards</a>
+              <a href="/mitigation/">Mitigation</a>
+            </nav>
+          )}
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>

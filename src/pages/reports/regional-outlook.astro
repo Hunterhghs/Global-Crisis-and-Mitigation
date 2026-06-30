@@ -1,0 +1,55 @@
+---
+import Report from "../../layouts/Report.astro";
+import { regions } from "../../data/regions";
+const toc = regions.map((r) => ({ id: r.id, label: r.name }));
+---
+<Report
+  num="03"
+  title="Regional outlook"
+  kicker="Regional"
+  lede="Five regions, one framework: exposure, buffers and binding constraints across Latin America, Sub-Saharan Africa, South & Southeast Asia, East Asia and Eastern Europe."
+  description="Regional exposure, buffer zones and binding constraints across the five regions that determine the century's outcome."
+  toc={toc}
+>
+  <p>
+    The same framework — exposure layers, buffer versus envelope, and absorptive capacity — applied
+    region by region. The headline is convergence of method, divergence of outcome: the binding
+    constraint differs sharply by region, and so does how much buffer is available.
+  </p>
+
+  {regions.map((r) => (
+    <section>
+      <h2 id={r.id}>{r.name}</h2>
+      <p><strong>Share of 2100 population:</strong> {r.pop2100Share}</p>
+      <div class="table-wrap" style="margin:14px 0 18px;">
+        <table class="data">
+          <tbody>
+            <tr><td style="width:170px;"><b>Binding constraint</b></td><td>{r.binding}</td></tr>
+            <tr><td><b>Worst-exposed</b></td><td>{r.worst}</td></tr>
+            <tr><td><b>Buffer zone</b></td><td>{r.buffer}</td></tr>
+            <tr><td><b>Any-layer exposure (~2050)</b></td><td>≈{r.combined}% of regional population</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>{r.verdict}</p>
+    </section>
+  ))}
+
+  <h2>The cross-regional pattern</h2>
+  <p>
+    Two variables explain most of the divergence: <strong>exposure growth</strong> (how fast hot,
+    humid, polluted conditions expand over where people live) and <strong>buffer availability</strong>
+    (elevation, building stock, grid, cooling, institutions). Sub-Saharan Africa and South Asia carry
+    the highest exposure-growth × population; Eastern Europe and the Andes/Southern Cone retain the
+    most buffer. Everywhere, the within-region gap between buffered and envelope populations widens.
+  </p>
+  <div class="callout navy">
+    <div class="co-label">The decisive move</div>
+    <p class="mb-0">
+      In high-exposure, low-buffer regions, adaptation <em>is</em> development. Where grid, water and
+      cooling are installed early and absorptive capacity compounds, warming becomes a costly-but-
+      survivable tax. Where they are not, warming can eat the development window before middle income.
+    </p>
+  </div>
+  <p><a href="/reports/long-run-outlook/">Next: The long-run outlook →</a></p>
+</Report>

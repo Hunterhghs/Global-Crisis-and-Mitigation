@@ -1,0 +1,70 @@
+---
+import Base from "../../layouts/Base.astro";
+
+const reports = [
+  {
+    num: "01",
+    href: "/reports/survivability-regime/",
+    title: "The survivability regime",
+    desc: "Why the century settles into stratified outcomes — buffer zone versus chronic-risk envelope — rather than uniform collapse or restoration.",
+    tags: ["Framing", "Long-run"],
+  },
+  {
+    num: "02",
+    href: "/reports/heat-and-the-medium/",
+    title: "Heat and the human medium",
+    desc: "Functional exposure — labor hours, cognition, learning, devices — as the binding loss long before physiological wet-bulb limits.",
+    tags: ["Heat", "Labor"],
+  },
+  {
+    num: "03",
+    href: "/reports/regional-outlook/",
+    title: "Regional outlook",
+    desc: "Latin America, Sub-Saharan Africa, South & Southeast Asia, East Asia and Eastern Europe — exposure, buffers and binding constraints.",
+    tags: ["Regional"],
+  },
+  {
+    num: "04",
+    href: "/reports/long-run-outlook/",
+    title: "The long-run outlook (to 3000)",
+    desc: "Committed warming, the danger window, and why the Holocene envelope is not restored on any human-planning horizon.",
+    tags: ["Long-run", "Timeline"],
+  },
+];
+---
+
+<Base
+  title="Digital Reports"
+  description="Long-form structural reports on the survivability regime, heat and the human medium, regional outlooks, and the long-run trajectory to 3000."
+>
+  <header class="page-head">
+    <div class="container page-head-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / Reports</div>
+      <span class="kicker">Digital reports</span>
+      <h1>Long-form structural analysis</h1>
+      <p class="lede">
+        Four reports synthesizing the research behind the index and dashboards — the framing, the
+        mechanism, the regional map, and the millennial trajectory.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="report-list">
+        {reports.map((r) => (
+          <div class="report-item">
+            <div class="ri-num">{r.num}</div>
+            <div>
+              <h3><a href={r.href}>{r.title}</a></h3>
+              <p>{r.desc}</p>
+            </div>
+            <div class="ri-tags">
+              {r.tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

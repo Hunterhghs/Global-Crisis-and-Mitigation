@@ -1,0 +1,86 @@
+---
+import Base from "../../layouts/Base.astro";
+import { methodNotes, sources } from "../../data/sources";
+import { dimensions } from "../../data/hcpi";
+---
+
+<Base
+  title="Methodology & Sources"
+  description="How the HCPI is scored, what the temperature bands mean, how regional figures are population-weighted, and the source register."
+>
+  <header class="page-head">
+    <div class="container page-head-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / Methodology</div>
+      <span class="kicker">Methodology &amp; sources</span>
+      <h1>How to read these figures</h1>
+      <p class="lede">
+        This resource synthesizes published climate, health and development research into a structured
+        analytical frame. The scores are judgments designed to make coupling legible — not measured
+        quantities with decimal precision.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container narrow">
+      {methodNotes.map((n) => (
+        <div style="margin-bottom:26px;">
+          <h3>{n.h}</h3>
+          <p style="color:var(--ink-2);">{n.p}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head"><h2>The six dimensions &amp; weights</h2></div>
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Code</th><th>Dimension</th><th>Question</th><th class="num-cell">Weight</th></tr></thead>
+          <tbody>
+            {dimensions.map((d) => (
+              <tr>
+                <td><b>{d.code}</b></td>
+                <td><b>{d.name}</b></td>
+                <td>{d.question}</td>
+                <td class="num-cell">{Math.round(d.weight * 100)}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="callout navy">
+        <div class="co-label">Composite</div>
+        <p class="mb-0" style="font-family:var(--mono);font-size:0.9rem;">
+          HCPI = 0.15·E + 0.15·U + 0.10·L + 0.25·K + 0.20·M + 0.15·ΔD
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><h2>Source register</h2><span class="meta">Synthesis inputs</span></div>
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Organization</th><th>Work</th><th>What it informs</th></tr></thead>
+          <tbody>
+            {sources.map((s) => (
+              <tr>
+                <td><b>{s.org}</b></td>
+                <td>{s.url ? <a href={s.url} target="_blank" rel="noopener">{s.title} ↗</a> : s.title}</td>
+                <td>{s.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:18px;">
+        Citations identify the bodies of work synthesized; specific figures are rounded and combined
+        across scenarios. This resource is an analytical synthesis for reasoning, not a primary data
+        source. Verify against originals before operational use.
+      </p>
+    </div>
+  </section>
+</Base>

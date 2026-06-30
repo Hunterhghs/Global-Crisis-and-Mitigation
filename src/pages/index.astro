@@ -1,0 +1,153 @@
+---
+import Base from "../layouts/Base.astro";
+import { problems, tierMeta } from "../data/hcpi";
+import { eras } from "../data/timeline";
+
+const tierI = problems.filter((p) => p.tier === "I");
+const featured = [
+  {
+    kicker: "Crisis Index",
+    title: "The Human Century Problem Index",
+    body: "Twelve century-scale problems scored across six dimensions and ranked by coupling — what drags the most systems down at once.",
+    href: "/crisis-index/",
+    foot: "Explore the interactive index",
+  },
+  {
+    kicker: "Dashboards",
+    title: "Heat, devices & regional exposure",
+    body: "Late-century peak temperatures, feels-like and WBGT, lived mean temperature, and the share of each region living in unsafe conditions.",
+    href: "/dashboards/",
+    foot: "Open the dashboards",
+  },
+  {
+    kicker: "Mitigation",
+    title: "Five levers, applied to the cores",
+    body: "Path, Stock, Medium, D and Allocation — what is actually mitigable for each Tier I problem, and what is beyond control.",
+    href: "/mitigation/",
+    foot: "Read the framework",
+  },
+];
+---
+
+<Base>
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="kicker">Structural research resource</span>
+      <h1>The century is not a collapse. It is a survivability regime.</h1>
+      <p class="hero-lede">
+        Climate, pollution, water, grid, demographic and institutional pressures do not arrive
+        separately — they synchronize. This resource maps where they couple, who sits inside the
+        buffer versus the chronic-risk envelope, and what remains mitigable.
+      </p>
+      <div class="hero-actions">
+        <a href="/crisis-index/" class="btn btn--sig">Explore the Crisis Index <span class="arr">→</span></a>
+        <a href="/reports/" class="btn btn--ghost">Read the reports</a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="hero-strip">
+        <div class="hs"><div class="n">~94%</div><div class="l">breathe air above the WHO PM₂.₅ guideline</div></div>
+        <div class="hs"><div class="n">2040–60</div><div class="l">danger window when crisis curves synchronize</div></div>
+        <div class="hs"><div class="n">217</div><div class="l">cities cross the &gt;29°C mean-temp niche by 2071–2100</div></div>
+        <div class="hs"><div class="n">12</div><div class="l">century-scale problems scored in the HCPI</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="kicker">The thesis</span>
+          <h2 style="margin-top:14px;">Not uniform collapse. Not a return to the Holocene. A stratified settle.</h2>
+        </div>
+        <div>
+          <p class="lede">
+            The dominant outcome this century is neither civilizational collapse nor restoration of a
+            stable climate. It is a <strong>survivability regime</strong>: a buffered zone with managed
+            heat, power and air, surrounding a chronic-risk envelope where months of functional
+            exposure erode labor, cognition and learning.
+          </p>
+          <p>
+            The decisive variable is not temperature alone — it is <strong>absorptive capacity</strong>:
+            whether finance, grid, cooling and institutions compound into installed stock before the
+            curves sync. Mitigation here is <em>navigation</em>, not reset.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Start here</h2>
+        <span class="meta">Three entry points</span>
+      </div>
+      <div class="grid g-3">
+        {featured.map((f) => (
+          <a href={f.href} class="card card--link">
+            <span class="card-kicker">{f.kicker}</span>
+            <h3>{f.title}</h3>
+            <p>{f.body}</p>
+            <span class="card-foot">{f.foot} <span class="arr">→</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>The systemic cores</h2>
+        <span class="meta">Tier I · highest coupling-weighted HCPI</span>
+      </div>
+      <p class="narrow" style="margin-left:0;color:var(--ink-2);">
+        {tierMeta.I.blurb} These five rank highest because they break grids, schools, farms and finance
+        at once — coupling and medium-impact, not headline severity, drive the score.
+      </p>
+      <div class="table-wrap" style="margin-top:22px;">
+        <table class="data">
+          <thead>
+            <tr><th>#</th><th>Problem</th><th class="num-cell">HCPI</th><th>Why it ranks here</th></tr>
+          </thead>
+          <tbody>
+            {tierI.map((p) => (
+              <tr>
+                <td><b>{p.rank}</b></td>
+                <td><b>{p.name}</b></td>
+                <td class="num-cell"><b>{p.hcpi.toFixed(1)}</b></td>
+                <td>{p.short}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:22px;">
+        <a href="/crisis-index/" class="btn btn--ghost">See all 12 in the interactive index <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="container">
+      <div class="section-head" style="border-color:rgba(255,255,255,0.3);">
+        <h2>The shape of the century</h2>
+        <span class="meta" style="color:#9fb0bd;">2025 → 3000</span>
+      </div>
+      <div class="grid g-3" style="gap:20px;">
+        {eras.slice(0, 3).map((e) => (
+          <div style="border-top:3px solid var(--signal);padding-top:14px;">
+            <div style="font-family:var(--mono);font-size:0.82rem;color:#7fc5d3;font-weight:600;">{e.period}</div>
+            <h3 style="color:#fff;margin:8px 0 8px;">{e.label}</h3>
+            <p style="font-size:0.9rem;color:#c3cdd6;margin:0;">{e.body}</p>
+          </div>
+        ))}
+      </div>
+      <div style="margin-top:30px;">
+        <a href="/reports/long-run-outlook/" class="btn btn--ghost" style="color:#fff;border-color:rgba(255,255,255,0.4);">Read the long-run outlook <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects
+/index/  /  301
+/reports/index/  /reports/  301

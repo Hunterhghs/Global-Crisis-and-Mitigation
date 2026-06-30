@@ -1,0 +1,12 @@
+// @ts-check
+import { defineConfig } from 'astro/config';
+import react from '@astrojs/react';
+
+// https://astro.build/config
+export default defineConfig({
+  site: 'https://global-crisis-and-mitigation.pages.dev',
+  integrations: [react()],
+  build: {
+    inlineStylesheets: 'auto',
+  },
+});

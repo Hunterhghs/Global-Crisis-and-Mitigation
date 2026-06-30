@@ -1,0 +1,82 @@
+---
+import Report from "../../layouts/Report.astro";
+const toc = [
+  { id: "thesis", label: "The thesis" },
+  { id: "stratification", label: "Stratification is default" },
+  { id: "absorptive", label: "Absorptive capacity" },
+  { id: "danger-window", label: "The danger window" },
+  { id: "takeaway", label: "Takeaway" },
+];
+---
+<Report
+  num="01"
+  title="The survivability regime"
+  kicker="Framing"
+  lede="The century settles into stratified outcomes — a buffer zone and a chronic-risk envelope — rather than uniform collapse or a return to the Holocene."
+  description="Why the century resolves into a survivability regime of buffered zones and a chronic-risk envelope, governed by absorptive capacity."
+  toc={toc}
+>
+  <h2 id="thesis">The thesis</h2>
+  <p>
+    Two narratives dominate discussion of the century: civilizational collapse, or a managed
+    transition back toward climate stability. Both are wrong in the same way — they assume a
+    <em>uniform</em> outcome. The structural evidence points to neither. It points to a
+    <strong>survivability regime</strong>: a stratified steady-state in which a buffered population
+    lives with managed heat, power and air, while a larger chronic-risk envelope absorbs months of
+    functional exposure each year.
+  </p>
+  <blockquote>
+    The question is not whether humanity survives the century. It is who lives inside the buffer, and
+    who lives inside the envelope.
+  </blockquote>
+
+  <h2 id="stratification">Stratification is the default, not the exception</h2>
+  <p>
+    Heat, pollution and grid stress do not distribute evenly. They concentrate in lowland megacities,
+    informal settlements and slum/panel-block districts with the highest urban-heat-island load and
+    the lowest physical buffer. Elevation, building stock, cooling access and institutional capacity
+    sort populations into outcomes that diverge sharply within a single city — let alone a region.
+  </p>
+  <p>
+    This is why population-weighted figures run hotter than territorial averages: people cluster
+    exactly where the exposure is worst. The mitigable question is not <em>whether</em> stratification
+    exists — by default it is regressive — but <strong>who is allocated a buffer.</strong>
+  </p>
+
+  <h2 id="absorptive">Absorptive capacity is the decisive variable</h2>
+  <p>
+    Temperature sets the hazard; <strong>absorptive capacity</strong> (what the index calls D) sets
+    the outcome. D is the stock of finance, procurement, enforcement, grid, cooling and skills that
+    converts inherited technology cascades — solar, digital public infrastructure, AI — into installed
+    capacity. Where D compounds, adaptation deploys at scale. Where it does not, the same finance
+    evaporates into pilots, and the development climb stalls mid-ascent.
+  </p>
+  <div class="callout navy">
+    <div class="co-label">The D-trap</div>
+    <p class="mb-0">
+      Growth and adaptation draw on the same fiscal space. Low- and middle-income countries that must
+      build the grid, the water system and the cooling stack <em>simultaneously</em> — while still
+      industrializing — face the deepest absorptive-capacity gap of any problem in the index.
+    </p>
+  </div>
+
+  <h2 id="danger-window">The danger window: 2040–2060</h2>
+  <p>
+    Through the 2020s and 2030s the crisis curves rise but rarely synchronize. Between roughly 2040
+    and 2060 they converge: functional heat, water and hydropower stress, grid and cooling demand,
+    demographic aging and institutional strain peak together. This is where trajectories bottleneck or
+    fork. Decisions made before the window — installing stock cheaply — determine which side of the
+    fork a city lands on. React inside the window and you pay the complexity tax at peak commodity
+    prices.
+  </p>
+
+  <h2 id="takeaway">Takeaway</h2>
+  <p>
+    The survivability regime reframes the goal. The objective is not to restore a stable climate this
+    century — committed warming forecloses that — nor to brace for total collapse, which the evidence
+    does not support. It is to <strong>widen the buffer and shrink the envelope</strong>: to expand the
+    share of humanity with managed exposure before the curves sync. Mitigation, in this frame, is
+    navigation.
+  </p>
+  <p><a href="/reports/heat-and-the-medium/">Next: Heat and the human medium →</a></p>
+</Report>

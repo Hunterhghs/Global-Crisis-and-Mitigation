@@ -1,0 +1,81 @@
+---
+import Report from "../../layouts/Report.astro";
+const toc = [
+  { id: "medium", label: "The medium, not the maximum" },
+  { id: "metrics", label: "Three metrics" },
+  { id: "cognition", label: "Cognition & learning" },
+  { id: "devices", label: "Heat and devices" },
+  { id: "wet-bulb", label: "The wet-bulb tail" },
+];
+---
+<Report
+  num="02"
+  title="Heat and the human medium"
+  kicker="Heat · Labor"
+  lede="Functional exposure — labor hours, cognition, learning and the devices we work on — is the binding loss long before physiological wet-bulb limits are reached."
+  description="Why functional heat exposure erodes the human medium — labor, cognition, learning, devices — well before lethal wet-bulb thresholds."
+  toc={toc}
+>
+  <h2 id="medium">The medium, not the maximum</h2>
+  <p>
+    Public attention fixes on the lethal extreme — the wet-bulb temperature at which the body can no
+    longer cool itself. But that threshold is rare and episodic. The damage that actually accumulates
+    is to the <strong>human medium</strong>: the productive coefficient of labor hours, cognition,
+    learning and health. Months of merely <em>functional</em> heat — too hot to work safely outdoors,
+    too hot to think clearly indoors without cooling — erode output and human capital long before
+    anyone reaches a physiological limit.
+  </p>
+  <blockquote>
+    The binding constraint is not the day the body fails. It is the months the mind and the workday
+    degrade.
+  </blockquote>
+
+  <h2 id="metrics">Three metrics, three questions</h2>
+  <p>These are not interchangeable, and conflating them is the most common error in heat discourse:</p>
+  <ul>
+    <li><strong>Air temperature (dry-bulb)</strong> — how hot the day is. Drives device thermals and headline numbers.</li>
+    <li><strong>Feels-like (heat index)</strong> — air plus humidity, for human discomfort. What a person experiences.</li>
+    <li><strong>WBGT (wet-bulb globe temperature)</strong> — the work-safety metric. Above ~30.5°C in sun, sustained outdoor labor becomes unsafe.</li>
+    <li><strong>MAT (mean annual temperature)</strong> — the chronic-niche metric. Crossing ~29°C MAT pushes a city outside the historical human niche.</li>
+  </ul>
+  <p>
+    Late-century, weak-path peaks reach feels-like values of 55–72°C in the Gulf and South Asia, with
+    WBGT in the 34–42°C band — well past the work-safety line for much of the year. See the
+    <a href="/dashboards/">heat dashboard</a> for the full regional bands.
+  </p>
+
+  <h2 id="cognition">Cognition, learning and pollution</h2>
+  <p>
+    Heat and PM₂.₅ act on the same target: the brain. Elevated temperature degrades attention, working
+    memory and decision quality; chronic particulate exposure compounds the effect and suppresses
+    learning. With ~94% of the world breathing air above the WHO PM₂.₅ guideline, the cognitive tax is
+    near-universal and largely invisible — it shows up as slower development, not as a disaster.
+  </p>
+
+  <h2 id="devices">Heat and the devices we work on</h2>
+  <p>
+    The infrastructure of modern work has its own thermal envelope. Lithium-ion batteries throttle or
+    pause charging above ~35°C ambient to protect chemistry; silicon down-clocks to avoid damage, so
+    sustained workloads fall below spec; datacenters lose efficiency exactly when cooling demand and
+    grid stress peak together. In cities where afternoon ambient sits at 38–45°C, phones and laptops
+    operate in the throttle-or-pause band for hours daily.
+  </p>
+  <div class="callout">
+    <div class="co-label">Coupling</div>
+    <p class="mb-0">
+      Device thermals close the loop: heat raises cooling demand → grid stress rises → blackouts remove
+      cooling and compute together → the work that adaptation depends on slows precisely when it is
+      needed most. This is why grid · power · compute is the central coupling hub of the index.
+    </p>
+  </div>
+
+  <h2 id="wet-bulb">The wet-bulb tail</h2>
+  <p>
+    Noncompensable wet-bulb heat (≈35°C Tw) remains a tail — low exposure share, but maximal medium
+    impact where it strikes. It is episodic today in the Persian Gulf, parts of South Asia and coastal
+    Central America, and could become seasonal in patches by late century on weak paths. In the index
+    it ranks lower on Exposure but maxes Medium: a tail inside Tier II, not the global center of
+    gravity. The center of gravity is the chronic envelope, not the lethal spike.
+  </p>
+  <p><a href="/reports/regional-outlook/">Next: Regional outlook →</a></p>
+</Report>

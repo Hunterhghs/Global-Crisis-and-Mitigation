@@ -1,0 +1,129 @@
+---
+import Base from "../../layouts/Base.astro";
+import HcpiDashboard from "../../components/charts/HcpiDashboard.tsx";
+import { dimensions, problems, tierMeta, dimColor, tailProblems, type Tier } from "../../data/hcpi";
+
+const tiers: Tier[] = ["I", "II", "III"];
+---
+
+<Base
+  title="Crisis Index (HCPI)"
+  description="The Human Century Problem Index — twelve century-scale problems scored across six dimensions and ranked by coupling-weighted severity."
+>
+  <header class="page-head">
+    <div class="container page-head-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / Crisis Index</div>
+      <span class="kicker">Human Century Problem Index</span>
+      <h1>A coupling-weighted ranking of the century's structural problems</h1>
+      <p class="lede">
+        Twelve problems, six dimensions, one composite. The index is built so that a problem which
+        breaks grids, schools, farms and finance <em>at once</em> outranks a narrow tail risk —
+        coupling and medium-impact carry the most weight.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Six dimensions</h2>
+        <span class="meta">Scored 0–10 each</span>
+      </div>
+      <div class="dim-key">
+        {dimensions.map((d) => (
+          <div class="dk">
+            <div>
+              <span class="code">{d.code}</span>
+              <span class="dn">{d.name}</span>
+            </div>
+            <div class="dq">{d.question}</div>
+            <div class="dw">Weight {Math.round(d.weight * 100)}%</div>
+          </div>
+        ))}
+      </div>
+      <div class="callout navy">
+        <div class="co-label">Composite formula</div>
+        <p style="font-family:var(--mono);font-size:0.9rem;">
+          HCPI = 0.15·E + 0.15·U + 0.10·L + 0.25·K + 0.20·M + 0.15·ΔD
+        </p>
+        <p class="mb-0">
+          Coupling (K) and Medium (M) dominate by design. Regional HCPI = global score × local
+          multiplier (tropical Asia/Africa ≈1.2–1.4; buffered upland/temperate ≈0.7–0.9).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Interactive index</h2>
+        <span class="meta">Filter by tier · click to inspect</span>
+      </div>
+      <HcpiDashboard client:load />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Full ranking by tier</h2>
+        <span class="meta">12 scored problems + tail</span>
+      </div>
+
+      {tiers.map((t) => (
+        <div style="margin-bottom:34px;">
+          <h3 style="display:flex;align-items:center;gap:10px;">
+            <span style={`width:12px;height:12px;border-radius:2px;background:${tierMeta[t].color};display:inline-block;`}></span>
+            {tierMeta[t].label}
+          </h3>
+          <p class="note" style="margin:4px 0 14px;">{tierMeta[t].blurb}</p>
+          <div class="table-wrap">
+            <table class="data">
+              <thead>
+                <tr>
+                  <th>Problem</th>
+                  <th class="num-cell">HCPI</th>
+                  {dimensions.map((d) => <th class="num-cell">{d.code}</th>)}
+                  <th>Why it ranks here</th>
+                </tr>
+              </thead>
+              <tbody>
+                {problems.filter((p) => p.tier === t).map((p) => (
+                  <tr>
+                    <td><b>{p.name}</b></td>
+                    <td class="num-cell"><b>{p.hcpi.toFixed(1)}</b></td>
+                    {dimensions.map((d) => <td class="num-cell">{p.scores[d.code]}</td>)}
+                    <td style="min-width:240px;">{p.rationale}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ))}
+
+      <h3>Tail risks (not scored on the full matrix)</h3>
+      <div class="table-wrap">
+        <table class="data">
+          <thead><tr><th>Problem</th><th class="num-cell">~HCPI</th><th>Note</th></tr></thead>
+          <tbody>
+            {tailProblems.map((p) => (
+              <tr><td><b>{p.name}</b></td><td class="num-cell">{p.hcpi.toFixed(1)}</td><td>{p.note}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="co-label">Reading the index</div>
+        <p class="mb-0">
+          AI is a <strong>multiplier, not a Tier I problem</strong> — it needs grid, cooling and
+          absorptive capacity to deliver. Wet-bulb ranks lower on Exposure (fewer people) but
+          <strong> max on Medium</strong> for affected populations: a tail inside Tier II, not the
+          global center of gravity.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

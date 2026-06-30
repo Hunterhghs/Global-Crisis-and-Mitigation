@@ -1,0 +1,73 @@
+---
+import Report from "../../layouts/Report.astro";
+import { eras } from "../../data/timeline";
+const toc = [
+  { id: "timeline", label: "Timeline to 3000" },
+  { id: "committed", label: "Committed warming" },
+  { id: "reversion", label: "The slow reversion" },
+  { id: "verdict", label: "The honest verdict" },
+];
+---
+<Report
+  num="04"
+  title="The long-run outlook (to 3000)"
+  kicker="Long-run · Timeline"
+  lede="Committed warming, the 2040–2060 danger window, and why the Holocene envelope is not restored on any human-planning horizon."
+  description="The millennial trajectory: committed warming, the danger window, redistribution, and centuries-to-millennia reversion."
+  toc={toc}
+>
+  <h2 id="timeline">The timeline to 3000</h2>
+  <p>
+    The century resolves in three acts — layering, the danger window, and a stratified settle — but
+    the trajectory does not end in 2100. Committed warming and sea-level rise extend the regime for
+    centuries.
+  </p>
+
+  <div class="timeline" style="margin:24px 0 32px;">
+    {eras.map((e) => (
+      <div class={`tl-item ${e.state}`}>
+        <div class="tl-dot"></div>
+        <div class="tl-period">{e.period}</div>
+        <div class="tl-body">
+          <h4>{e.label}</h4>
+          <p>{e.body}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <h2 id="committed">Committed warming</h2>
+  <p>
+    Even under deep, immediate emissions cuts, the climate system carries momentum. Ocean thermal
+    inertia, ice-sheet response and the long atmospheric lifetime of CO₂ mean that temperatures
+    plateau rather than fall within the century, and sea level continues rising for centuries
+    regardless of the path. This is the floor beneath the survivability regime: the buffer can be
+    widened, but the baseline cannot be undone on a human timescale.
+  </p>
+
+  <h2 id="reversion">The slow reversion</h2>
+  <p>
+    On strong-mitigation paths, the very long run does bend back. Over centuries to millennia — roughly
+    the 2300–3000 horizon — natural carbon sinks and slow drawdown pull temperatures down. But ice and
+    sea level lag far behind temperature, and the Holocene climate envelope that civilization developed
+    inside is <strong>not restored on any planning horizon a human institution can act on.</strong> By
+    then, populations have redistributed toward buffered latitudes and elevations, and the geography of
+    habitation looks materially different.
+  </p>
+
+  <h2 id="verdict">The honest verdict</h2>
+  <p>
+    The long view clarifies the near-term task. Because the floor is fixed and the danger window is
+    close, the only lever with leverage is <strong>front-loading the 2020s–2030s</strong>: installing
+    absorptive capacity while it is cheap, before the curves synchronize. Three things are beyond
+    control — committed warming, demographic weight in hot zones, and default inequality. Everything
+    else is allocation and timing.
+  </p>
+  <blockquote>
+    Mitigation is not reset. It is navigation — choosing how wide the buffer is, and who is inside it,
+    within a regime that is already locked in.
+  </blockquote>
+  <p>
+    <a href="/mitigation/">See the mitigation framework →</a> · <a href="/crisis-index/">Back to the Crisis Index →</a>
+  </p>
+</Report>

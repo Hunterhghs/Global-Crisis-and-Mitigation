@@ -12,7 +12,7 @@ import {
   Cell,
 } from "recharts";
 import { cyberCostTrend, attackTypes, digitalDivide, targetedSectors } from "../../data/cybercrime";
-import { palette, axisStyle, gridStyle } from "./theme";
+import { palette, axisStyle, gridStyle, useIsMobile } from "./theme";
 
 type View = "cost" | "types" | "sectors" | "divide";
 
@@ -25,6 +25,7 @@ const views: { key: View; label: string }[] = [
 
 export default function CybercrimeDashboard() {
   const [view, setView] = useState<View>("cost");
+  const isMobile = useIsMobile();
 
   return (
     <div>
@@ -73,7 +74,7 @@ export default function CybercrimeDashboard() {
                 <YAxis
                   type="category"
                   dataKey="type"
-                  width={210}
+                  width={isMobile ? 120 : 210}
                   tick={{ ...axisStyle, fontSize: 9.5 }}
                   tickLine={false}
                   axisLine={false}
@@ -131,7 +132,7 @@ export default function CybercrimeDashboard() {
                 <YAxis
                   type="category"
                   dataKey="region"
-                  width={150}
+                  width={isMobile ? 110 : 150}
                   tick={{ ...axisStyle, fontSize: 10 }}
                   tickLine={false}
                   axisLine={false}

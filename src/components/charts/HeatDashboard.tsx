@@ -12,7 +12,7 @@ import {
   Cell,
 } from "recharts";
 import { metricBands, extremeHeatDays, popWeightedMAT, cToF } from "../../data/heat";
-import { palette, axisStyle, gridStyle } from "./theme";
+import { palette, axisStyle, gridStyle, useIsMobile } from "./theme";
 
 type Unit = "C" | "F";
 type View = "peak" | "days" | "mat";
@@ -27,6 +27,7 @@ export default function HeatDashboard() {
   const [unit, setUnit] = useState<Unit>("C");
   const [view, setView] = useState<View>("peak");
   const [metric, setMetric] = useState<(typeof metricKeys)[number]["key"]>("feels");
+  const isMobile = useIsMobile();
 
   const conv = (c: number) => (unit === "F" ? cToF(c) : c);
   const u = unit === "F" ? "°F" : "°C";
@@ -152,7 +153,7 @@ export default function HeatDashboard() {
                 <YAxis
                   type="category"
                   dataKey="city"
-                  width={130}
+                  width={isMobile ? 104 : 130}
                   tick={{ ...axisStyle, fontSize: 10 }}
                   tickLine={false}
                   axisLine={false}

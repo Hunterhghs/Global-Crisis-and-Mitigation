@@ -21,7 +21,7 @@ import {
   foodContaminants,
   pollutionTrend,
 } from "../../data/pollution";
-import { palette, axisStyle, gridStyle } from "./theme";
+import { palette, axisStyle, gridStyle, useIsMobile } from "./theme";
 
 type View = "air" | "sources" | "water" | "food" | "trend";
 
@@ -42,6 +42,7 @@ function pmColor(pm: number) {
 
 export default function PollutionDashboard() {
   const [view, setView] = useState<View>("air");
+  const isMobile = useIsMobile();
 
   return (
     <div>
@@ -108,7 +109,7 @@ export default function PollutionDashboard() {
                 <YAxis
                   type="category"
                   dataKey="source"
-                  width={210}
+                  width={isMobile ? 118 : 210}
                   tick={{ ...axisStyle, fontSize: 10 }}
                   tickLine={false}
                   axisLine={false}
@@ -164,7 +165,7 @@ export default function PollutionDashboard() {
                 <YAxis
                   type="category"
                   dataKey="contaminant"
-                  width={180}
+                  width={isMobile ? 112 : 180}
                   tick={{ ...axisStyle, fontSize: 9.5 }}
                   tickLine={false}
                   axisLine={false}

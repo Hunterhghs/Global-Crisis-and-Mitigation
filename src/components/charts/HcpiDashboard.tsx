@@ -15,7 +15,7 @@ import {
   Radar,
 } from "recharts";
 import { problems, dimensions, tierMeta, type Problem, type Tier } from "../../data/hcpi";
-import { palette, axisStyle, gridStyle } from "./theme";
+import { palette, axisStyle, gridStyle, useIsMobile } from "./theme";
 
 const tierColor: Record<Tier, string> = {
   I: palette.signal,
@@ -26,6 +26,7 @@ const tierColor: Record<Tier, string> = {
 export default function HcpiDashboard() {
   const [activeTier, setActiveTier] = useState<Tier | "all">("all");
   const [selected, setSelected] = useState<Problem>(problems[0]);
+  const isMobile = useIsMobile();
 
   const filtered = useMemo(
     () => (activeTier === "all" ? problems : problems.filter((p) => p.tier === activeTier)),
@@ -81,7 +82,7 @@ export default function HcpiDashboard() {
                 <YAxis
                   type="category"
                   dataKey="name"
-                  width={150}
+                  width={isMobile ? 112 : 150}
                   tick={{ ...axisStyle, fontSize: 10.5 }}
                   tickLine={false}
                   axisLine={false}

@@ -13,7 +13,7 @@ import {
   Cell,
 } from "recharts";
 import { ewasteTrend, feelsLikeCities, compoundStress } from "../../data/cascades";
-import { palette, axisStyle, gridStyle } from "./theme";
+import { palette, axisStyle, gridStyle, useIsMobile } from "./theme";
 
 type View = "ewaste" | "feels" | "compound";
 
@@ -33,6 +33,7 @@ const compoundColor: Record<string, string> = {
 
 export default function CascadeDashboard() {
   const [view, setView] = useState<View>("ewaste");
+  const isMobile = useIsMobile();
 
   return (
     <div>
@@ -117,7 +118,7 @@ export default function CascadeDashboard() {
                 <YAxis
                   type="category"
                   dataKey="combo"
-                  width={190}
+                  width={isMobile ? 118 : 190}
                   tick={{ ...axisStyle, fontSize: 10 }}
                   tickLine={false}
                   axisLine={false}

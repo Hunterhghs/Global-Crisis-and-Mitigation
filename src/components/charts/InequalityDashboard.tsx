@@ -15,7 +15,7 @@ import {
   Cell,
 } from "recharts";
 import { wealthShare, incomeTop10, povertyTrend, climateEquity } from "../../data/inequality";
-import { palette, axisStyle, gridStyle, seriesColors } from "./theme";
+import { palette, axisStyle, gridStyle, seriesColors, useIsMobile } from "./theme";
 
 type View = "wealth" | "income" | "poverty" | "climate";
 
@@ -28,6 +28,7 @@ const views: { key: View; label: string }[] = [
 
 export default function InequalityDashboard() {
   const [view, setView] = useState<View>("wealth");
+  const isMobile = useIsMobile();
 
   return (
     <div>
@@ -83,7 +84,7 @@ export default function InequalityDashboard() {
                 <YAxis
                   type="category"
                   dataKey="region"
-                  width={170}
+                  width={isMobile ? 112 : 170}
                   tick={{ ...axisStyle, fontSize: 10 }}
                   tickLine={false}
                   axisLine={false}

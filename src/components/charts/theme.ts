@@ -1,3 +1,19 @@
+import { useEffect, useState } from "react";
+
+/** Tracks whether the viewport is in a narrow (mobile) range so charts can
+ *  adapt fixed pixel dimensions (e.g. category-axis width) for small screens. */
+export function useIsMobile(breakpoint = 560): boolean {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${breakpoint}px)`);
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 export const palette = {
   navy: "#0f2a43",
   teal: "#237e8b",

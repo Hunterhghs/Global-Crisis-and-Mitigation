@@ -15,7 +15,7 @@ import {
   ReferenceLine,
 } from "recharts";
 import { warmingPaths, emissionsByRegion, seaLevel } from "../../data/climate";
-import { palette, axisStyle, gridStyle } from "./theme";
+import { palette, axisStyle, gridStyle, useIsMobile } from "./theme";
 
 type View = "warming" | "emissions" | "sea";
 
@@ -27,6 +27,7 @@ const views: { key: View; label: string }[] = [
 
 export default function ClimateDashboard() {
   const [view, setView] = useState<View>("warming");
+  const isMobile = useIsMobile();
 
   return (
     <div>
@@ -75,7 +76,7 @@ export default function ClimateDashboard() {
                 <YAxis
                   type="category"
                   dataKey="region"
-                  width={160}
+                  width={isMobile ? 112 : 160}
                   tick={{ ...axisStyle, fontSize: 10 }}
                   tickLine={false}
                   axisLine={false}

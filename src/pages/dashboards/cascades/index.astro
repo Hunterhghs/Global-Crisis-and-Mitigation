@@ -1,0 +1,104 @@
+---
+import Base from "../../../layouts/Base.astro";
+import CascadeDashboard from "../../../components/charts/CascadeDashboard.tsx";
+import { cascadeHeadline, batteryChain, otherCascades, cascadeNarrative } from "../../../data/cascades";
+---
+
+<Base
+  title="Cascade & Secondary Effects Dashboard"
+  description="Secondary and tertiary effects — battery and e-waste, feels-like city temperatures, and compound heat-pollution stress on the majority of humanity."
+>
+  <header class="page-head">
+    <div class="container page-head-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / <a href="/dashboards/">Dashboards</a> / Cascade effects</div>
+      <span class="kicker">Secondary &amp; tertiary effects</span>
+      <h1>Cascade effects: when the fix spawns the next problem</h1>
+      <p class="lede">
+        Primary crises rarely arrive alone. The clean-energy transition creates a battery-waste stream;
+        the cooling that protects people loads the grid and warms the street; humidity turns survivable
+        air temperatures into dangerous feels-like heat. These second-order effects often outweigh the
+        first.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid g-4">
+        {cascadeHeadline.map((h) => (
+          <div class="stat sig">
+            <div class="num">{h.num}</div>
+            <div class="label">{h.label}</div>
+            <div class="src">{h.src}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Cascade explorer</h2>
+        <span class="meta">3 views · waste · feels-like · compound</span>
+      </div>
+      <CascadeDashboard client:load />
+      <div class="callout" style="margin-top:26px;">
+        <div class="co-label">The pattern</div>
+        <p class="mb-0">{cascadeNarrative}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="section-head"><h2>The battery-waste chain</h2></div>
+          <p>
+            Batteries are essential to decarbonization — and a cascade in their own right. Heat shortens
+            their life (accelerating replacement), and informal recycling exposes workers to the same
+            heavy metals the pollution cycle tracks.
+          </p>
+          <div class="therm">
+            {batteryChain.map((b) => (
+              <div class={`tb ${b.sev}`}>
+                <div class="band" style="min-width:150px;">{b.stage}</div>
+                <div class="eff">{b.effect}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div class="section-head"><h2>Other cascades</h2></div>
+          <p>The register of second- and third-order effects that mitigation has to anticipate.</p>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Effect</th><th>Mechanism</th></tr></thead>
+              <tbody>
+                {otherCascades.map((c) => (
+                  <tr><td><b>{c.effect}</b></td><td>{c.note}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container narrow center">
+      <h2>Heat + pollution: the majority experience</h2>
+      <p class="lede">
+        By late century, on a middle-to-weak path, roughly <strong>85% of humanity</strong> faces heat
+        and/or pollution stress in combination — not as rare disasters, but as the everyday medium of
+        work, school and health.
+      </p>
+      <div class="hero-actions" style="justify-content:center;margin-top:8px;">
+        <a href="/dashboards/pollution/" class="btn btn--ghost">Pollution cycle <span class="arr">→</span></a>
+        <a href="/dashboards/heat/" class="btn btn--ghost">Heat &amp; devices</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,83 @@
+---
+import Report from "../../layouts/Report.astro";
+const toc = [
+  { id: "split", label: "A century that splits" },
+  { id: "africa", label: "Africa's rise" },
+  { id: "europe", label: "Europe & East Asia's decline" },
+  { id: "coupling", label: "Population meets exposure" },
+  { id: "navigate", label: "What's navigable" },
+];
+---
+<Report
+  num="06"
+  title="The great demographic divergence"
+  kicker="Demographics · Regional"
+  lede="An aging, shrinking Europe and East Asia against a young, roughly tripling Sub-Saharan Africa — and why, this century, population and exposure rise together."
+  description="The demographic divergence between a contracting Global North and a young, growing Sub-Saharan Africa, and how it couples to heat, water and grid exposure."
+  toc={toc}
+>
+  <h2 id="split">A century that splits in two</h2>
+  <p>
+    Global population is projected to peak around <strong>10.3 billion in the 2080s</strong> and then
+    edge down — but the aggregate hides a divergence. Two demographic worlds are pulling apart: one
+    aging and contracting, concentrated in Europe and East Asia; the other young and expanding,
+    concentrated in Sub-Saharan Africa. They strain the same global system from opposite ends.
+  </p>
+  <blockquote>
+    The aggregate peak is almost irrelevant. What matters is that the next two billion people arrive in
+    the regions least buffered against heat, water and grid stress.
+  </blockquote>
+
+  <h2 id="africa">Africa's rise</h2>
+  <p>
+    Sub-Saharan Africa's population roughly <strong>triples across the century</strong>, moving from
+    about one in six people today toward one in four by 2100. Its median age — near 19 today — stays
+    decades younger than the rest of the world. Where that youth meets jobs, electricity, schooling and
+    a functioning grid, it is a <strong>demographic dividend</strong>: the largest pool of working-age
+    people on the planet. Where it meets the development trap — stalled absorptive capacity, weak power,
+    informal labor exposed to heat and pollution — it becomes the century's sharpest pressure.
+  </p>
+
+  <h2 id="europe">Europe and East Asia's decline</h2>
+  <p>
+    At the other pole, much of Europe and East Asia ages and shrinks. Old-age dependency — retirees per
+    100 working-age people — rises steeply: Europe from the low-30s toward the high-50s, East Asia even
+    faster as its mid-century cohorts retire. The consequences are labor shortages, fiscal strain on
+    pensions and health systems, and — relevant to this index — a population that is
+    <strong>more vulnerable to heat</strong> exactly as it loses the workers needed to build adaptation.
+    Aging is itself a heat-risk multiplier: the elderly dominate heat-mortality statistics.
+  </p>
+
+  <h2 id="coupling">Population meets exposure</h2>
+  <p>
+    The divergence is dangerous because of <em>where</em> the growth lands. The regions adding the most
+    people — Sub-Saharan Africa, South Asia — are largely the same regions facing the worst
+    population-weighted heat, the deepest water stress and the weakest grids. So population and exposure
+    do not move independently; <strong>they rise together.</strong> The result is more people in hotter,
+    lower-buffer places, served by institutions still racing to install basic capacity.
+  </p>
+  <div class="callout navy">
+    <div class="co-label">Two curves, one system</div>
+    <p class="mb-0">
+      Northern aging drains the workforce and capital that global adaptation depends on, while Southern
+      growth concentrates new population in the hardest-hit zones. The demographic transition and the
+      climate transition are running on the same clock.
+    </p>
+  </div>
+
+  <h2 id="navigate">What's navigable</h2>
+  <p>
+    Demography is among the most locked-in variables on the index — fertility and aging move slowly and
+    predictably. But the <em>outcome</em> is not fixed:
+  </p>
+  <ul>
+    <li><strong>Turn growth into a dividend:</strong> front-load grid, schooling and jobs in young regions so the working-age bulge compounds rather than stalls.</li>
+    <li><strong>Adapt to aging:</strong> heat-protection for the elderly, healthcare capacity, and productivity to offset shrinking workforces in the North.</li>
+    <li><strong>Plan for movement:</strong> treat rural-urban and cross-border migration as a baseline, not a contingency.</li>
+  </ul>
+  <p>
+    Demography sets the denominator for almost every other problem in the index. See how exposure maps
+    onto it in the <a href="/reports/regional-outlook/">regional outlook</a>, and explore the curves in
+    the <a href="/dashboards/demographics/">demographics dashboard</a>.
+  </p>
+</Report>

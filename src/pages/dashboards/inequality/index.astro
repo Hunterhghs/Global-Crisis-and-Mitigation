@@ -1,0 +1,84 @@
+---
+import Base from "../../../layouts/Base.astro";
+import InequalityDashboard from "../../../components/charts/InequalityDashboard.tsx";
+import { inequalityHeadline, deprivations, inequalityCoupling } from "../../../data/inequality";
+---
+
+<Base
+  title="Inequality & Poverty Dashboard"
+  description="Global wealth and income concentration, the stalled decline of extreme poverty, multidimensional deprivation, and the gap between who causes climate harm and who carries it."
+>
+  <header class="page-head">
+    <div class="container page-head-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / <a href="/dashboards/">Dashboards</a> / Inequality &amp; poverty</div>
+      <span class="kicker">Social · Inequality</span>
+      <h1>Inequality and poverty</h1>
+      <p class="lede">
+        Inequality is the multiplier on every other crisis. The same heat, pollution and water stress
+        produce radically different outcomes depending on who can buy cooling, filtration, clean water
+        and relocation. Stratification — not the hazard alone — decides who survives well.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid g-4">
+        {inequalityHeadline.map((h) => (
+          <div class="stat sig">
+            <div class="num">{h.num}</div>
+            <div class="label">{h.label}</div>
+            <div class="src">{h.src}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Inequality explorer</h2>
+        <span class="meta">4 views</span>
+      </div>
+      <InequalityDashboard client:load />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="section-head"><h2>Poverty is multidimensional</h2></div>
+          <p>
+            Income is only one axis. The Multidimensional Poverty Index counts overlapping deprivations
+            — and the most common is the lack of clean cooking fuel, which ties poverty directly back to
+            indoor air pollution.
+          </p>
+          <div class="table-wrap">
+            <table class="data">
+              <thead><tr><th>Deprivation</th><th class="num-cell">Share of poor affected</th></tr></thead>
+              <tbody>
+                {deprivations.map((d) => (
+                  <tr><td><b>{d.dim}</b></td><td class="num-cell">{d.share}%</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div class="section-head"><h2>Why it couples</h2></div>
+          <div class="callout navy" style="margin-top:0;">
+            <div class="co-label">The multiplier</div>
+            <p class="mb-0">{inequalityCoupling}</p>
+          </div>
+          <p style="margin-top:20px;">
+            This is why the index treats <strong>stratified allocation</strong> as a Tier I problem in
+            its own right: who gets the buffer is as decisive as how large the hazard grows. See the
+            <a href="/mitigation/"> mitigation framework</a> for the allocation lever.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

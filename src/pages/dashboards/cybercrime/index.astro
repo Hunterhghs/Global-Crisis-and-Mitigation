@@ -1,0 +1,65 @@
+---
+import Base from "../../../layouts/Base.astro";
+import CybercrimeDashboard from "../../../components/charts/CybercrimeDashboard.tsx";
+import { cyberHeadline, cyberCoupling } from "../../../data/cybercrime";
+---
+
+<Base
+  title="Cybercrime & Digital Dashboard"
+  description="The cost trajectory of cybercrime, attack types, most-targeted sectors, and the digital divide — the friction tax on the digital layer adaptation depends on."
+>
+  <header class="page-head">
+    <div class="container page-head-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / <a href="/dashboards/">Dashboards</a> / Cybercrime &amp; digital</div>
+      <span class="kicker">Digital · Cybercrime</span>
+      <h1>Cybercrime and the digital layer</h1>
+      <p class="lede">
+        Modern adaptation runs on software — grids, water utilities, hospitals and payments are
+        increasingly digital, and increasingly targeted. Cybercrime is the friction tax on that layer,
+        growing faster than almost any legitimate sector as AI lowers the cost of attacks.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid g-4">
+        {cyberHeadline.map((h) => (
+          <div class="stat sig">
+            <div class="num">{h.num}</div>
+            <div class="label">{h.label}</div>
+            <div class="src">{h.src}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Cybercrime explorer</h2>
+        <span class="meta">4 views</span>
+      </div>
+      <CybercrimeDashboard client:load />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="callout navy">
+        <div class="co-label">Why it couples</div>
+        <p class="mb-0">{cyberCoupling}</p>
+      </div>
+      <p style="margin-top:22px;">
+        In the index, cybercrime sits with the <strong>amplifiers</strong>: it does not break the
+        physical world on its own, but it raises the cost and lowers the reliability of every digital
+        adaptation. Resilience — not just connectivity — is the missing variable.
+      </p>
+      <div class="hero-actions" style="margin-top:8px;">
+        <a href="/crisis-index/" class="btn btn--ghost">See it in the Crisis Index <span class="arr">→</span></a>
+        <a href="/dashboards/" class="btn btn--ghost">All dashboards</a>
+      </div>
+    </div>
+  </section>
+</Base>

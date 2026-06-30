@@ -1,0 +1,115 @@
+---
+import Report from "../../layouts/Report.astro";
+import { pollutionCycle } from "../../data/pollution";
+const toc = [
+  { id: "scale", label: "The scale" },
+  { id: "cycle", label: "One connected loop" },
+  { id: "air", label: "Air" },
+  { id: "water", label: "Water" },
+  { id: "food", label: "Soil & food" },
+  { id: "body", label: "The body" },
+  { id: "mitigate", label: "Where it's mitigable" },
+];
+---
+<Report
+  num="05"
+  title="The pollution cycle"
+  kicker="Pollution · Health"
+  lede="Air, water and food contamination are not three problems but one loop. What we burn settles into water, irrigates soil, concentrates in food, and ends in the body — then cycles back."
+  description="The pollution cycle: how air, water, soil and food contamination connect into one self-reinforcing loop, and where prevention beats cleanup."
+  toc={toc}
+>
+  <h2 id="scale">The scale</h2>
+  <p>
+    Pollution is the most pervasive crisis on the index and one of the most lethal. Around
+    <strong>nine million premature deaths a year</strong> — roughly one in six deaths globally — are
+    attributable to pollution, more than war, hunger and most individual diseases. About
+    <strong>94% of humanity</strong> breathes air above the WHO PM₂.₅ guideline, and some
+    <strong>two billion people</strong> lack safely managed drinking water. Yet it draws a fraction of
+    the attention heat or conflict receives, partly because it kills slowly and invisibly.
+  </p>
+  <blockquote>
+    Pollution does not stay where it is made. It is a cycle, not a place — which is why no single medium
+    can be cleaned in isolation.
+  </blockquote>
+
+  <h2 id="cycle">One connected loop</h2>
+  <p>
+    The defining feature of pollution is circulation. A pollutant emitted into the air does not vanish;
+    it deposits into water and soil, is taken up by crops and livestock, concentrates up the food chain,
+    enters the body, and is re-excreted back into the environment. Each stage feeds the next.
+  </p>
+  <div class="cycle" style="margin:24px 0 12px;">
+    {pollutionCycle.map((s, i) => (
+      <>
+        <div class="cycle-stage">
+          <div class="cs-icon">{s.icon}</div>
+          <div class="cs-name">{s.stage}</div>
+          <p class="cs-body">{s.body}</p>
+          <div class="cs-flow">{s.flowsTo}</div>
+        </div>
+        {i < pollutionCycle.length - 1 && <div class="cycle-arrow">→</div>}
+      </>
+    ))}
+  </div>
+
+  <h2 id="air">Air</h2>
+  <p>
+    Combustion is the engine — residential solid fuel, industry, transport and power generation load the
+    atmosphere with PM₂.₅, nitrogen oxides, sulphur dioxide and ozone precursors. Fine particles travel
+    hundreds of kilometres, so the worst-exposed are often far from the source. Crucially, the same
+    fossil combustion that pollutes the air is what warms the planet: <strong>cutting it bends both the
+    pollution and the climate curve at once.</strong>
+  </p>
+
+  <h2 id="water">Water</h2>
+  <p>
+    Airborne particles settle into rivers and oceans, while industrial discharge, sewage and
+    agricultural runoff add nitrates, heavy metals, microplastics and PFAS "forever chemicals." Lead
+    leaches from old pipes; arsenic appears both geogenically and industrially. The result is layered:
+    pathogens still drive child mortality, while persistent chemicals accumulate with no safe level and
+    no easy removal.
+  </p>
+
+  <h2 id="food">Soil & food</h2>
+  <p>
+    Soil is the cycle's reservoir — it holds cadmium, lead, arsenic and persistent organics for decades,
+    releasing them slowly into staple crops. Heat makes this worse: warmer, more humid storage raises
+    mycotoxin (aflatoxin) growth on grains and nuts. Fish and livestock bioaccumulate metals and
+    microplastics, concentrating contaminants on the plate far from where they originated.
+  </p>
+
+  <h2 id="body">The body</h2>
+  <p>
+    Pollutants enter through lungs, gut and skin, driving cardiovascular disease, cancer, and — the
+    most under-counted harm — <strong>cognitive and developmental loss</strong>. Lead alone may impair
+    development in some 800 million children and contribute to millions of adult cardiovascular deaths a
+    year. Combined with heat, which independently degrades attention and learning, pollution imposes a
+    quiet tax on the human medium that shows up as slower development rather than as a visible disaster.
+  </p>
+
+  <h2 id="mitigate">Where it's mitigable</h2>
+  <p>
+    Because pollution is a cycle, the highest-leverage interventions are at the source, before
+    contaminants disperse into media that are expensive or impossible to clean:
+  </p>
+  <ul>
+    <li><strong>Path:</strong> decarbonize and electrify cooking, transport and power — the same lever that cuts warming.</li>
+    <li><strong>Stock:</strong> sanitation, water treatment, filtration and clean-cooking infrastructure where the gap is widest.</li>
+    <li><strong>Medium:</strong> indoor-air standards, lead removal in water systems, food-safety monitoring of staples.</li>
+    <li><strong>D (capacity):</strong> enforcement and monitoring — without it, standards are paper.</li>
+    <li><strong>Allocation:</strong> prioritize the highest-exposure, lowest-buffer communities first.</li>
+  </ul>
+  <div class="callout">
+    <div class="co-label">The principle</div>
+    <p class="mb-0">
+      End-of-pipe cleanup chases pollutants across every medium they reach. Source prevention is cheaper
+      and compounds — and because combustion drives both pollution and warming, it is the rare lever that
+      pays twice.
+    </p>
+  </div>
+  <p>
+    <a href="/dashboards/pollution/">Explore the pollution dashboard →</a> ·
+    <a href="/mitigation/"> See the mitigation framework →</a>
+  </p>
+</Report>

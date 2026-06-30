@@ -4,6 +4,18 @@ import { problems, tierMeta } from "../data/hcpi";
 import { eras } from "../data/timeline";
 
 const tierI = problems.filter((p) => p.tier === "I");
+
+const concerns = [
+  { href: "/dashboards/pollution/", name: "Pollution cycle", note: "Air · water · food contamination", tag: "Tier II core" },
+  { href: "/dashboards/climate/", name: "Climate & warming", note: "Emissions · warming paths · sea level", tag: "Forcing function" },
+  { href: "/dashboards/heat/", name: "Heat & devices", note: "WBGT · feels-like · thermal limits", tag: "Tier I core" },
+  { href: "/dashboards/inequality/", name: "Inequality & poverty", note: "Wealth · income · equity gap", tag: "Multiplier" },
+  { href: "/dashboards/demographics/", name: "Demographic shifts", note: "Africa rise · Europe decline · aging", tag: "Denominator" },
+  { href: "/dashboards/cybercrime/", name: "Cybercrime & digital", note: "Cost · attacks · digital divide", tag: "Amplifier" },
+  { href: "/dashboards/cascades/", name: "Cascade effects", note: "Battery & e-waste · compound stress", tag: "Secondary" },
+  { href: "/crisis-index/", name: "Institutions & conflict", note: "Fracture · allocation · the D-trap", tag: "Tier I core" },
+];
+
 const featured = [
   {
     kicker: "Crisis Index",
@@ -14,8 +26,8 @@ const featured = [
   },
   {
     kicker: "Dashboards",
-    title: "Heat, devices & regional exposure",
-    body: "Late-century peak temperatures, feels-like and WBGT, lived mean temperature, and the share of each region living in unsafe conditions.",
+    title: "Seven interactive dashboards",
+    body: "Pollution, climate, heat, inequality, demographics, cybercrime and cascade effects — the data behind each pressing issue, explorable side by side.",
     href: "/dashboards/",
     foot: "Open the dashboards",
   },
@@ -74,6 +86,30 @@ const featured = [
             curves sync. Mitigation here is <em>navigation</em>, not reset.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>The concerns we track</h2>
+        <span class="meta">One coupled system</span>
+      </div>
+      <p class="narrow" style="margin-left:0;color:var(--ink-2);">
+        Pollution, climate, heat, inequality, demographics, cybercrime and their downstream cascades —
+        each has its own dashboard, but none stands alone. They share drivers and amplify one another.
+      </p>
+      <div class="concern-grid">
+        {concerns.map((c) => (
+          <a href={c.href} class="concern">
+            <div class="concern-top">
+              <span class="concern-name">{c.name}</span>
+              <span class="tag">{c.tag}</span>
+            </div>
+            <span class="concern-note">{c.note}</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>

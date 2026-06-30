@@ -1,0 +1,133 @@
+---
+import Base from "../../../layouts/Base.astro";
+import PollutionDashboard from "../../../components/charts/PollutionDashboard.tsx";
+import {
+  pollutionHeadline,
+  pollutionCycle,
+  waterContaminants,
+  leadFacts,
+  pollutionHeatCoupling,
+} from "../../../data/pollution";
+---
+
+<Base
+  title="Pollution Dashboard"
+  description="The pollution cycle — air, water, soil and food contamination — with PM₂.₅ by region and source, drinking-water access, food-chain load, and how pollutants move into the body."
+>
+  <header class="page-head">
+    <div class="container page-head-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / <a href="/dashboards/">Dashboards</a> / Pollution</div>
+      <span class="kicker">The pollution cycle</span>
+      <h1>Pollution: the most pervasive crisis on the index</h1>
+      <p class="lede">
+        Air, water and food contamination are not three problems — they are one cycle. Pollutants move
+        between media: what we burn settles into water, irrigates soil, concentrates in food, and ends
+        in the body. It kills around nine million people a year, more than war and most diseases.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid g-4">
+        {pollutionHeadline.map((h) => (
+          <div class="stat sig">
+            <div class="num">{h.num}</div>
+            <div class="label">{h.label}</div>
+            <div class="src">{h.src}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>The pollution cycle</h2>
+        <span class="meta">How contaminants move</span>
+      </div>
+      <p class="narrow" style="margin-left:0;color:var(--ink-2);">
+        No medium is a dead end. Pollution circulates — air to water to soil to food to body, and back
+        again — which is why source-level prevention beats end-of-pipe cleanup at every stage.
+      </p>
+      <div class="cycle">
+        {pollutionCycle.map((s, i) => (
+          <>
+            <div class="cycle-stage">
+              <div class="cs-icon">{s.icon}</div>
+              <div class="cs-name">{s.stage}</div>
+              <p class="cs-body">{s.body}</p>
+              <div class="cs-flow">{s.flowsTo}</div>
+            </div>
+            {i < pollutionCycle.length - 1 && <div class="cycle-arrow">→</div>}
+          </>
+        ))}
+      </div>
+      <div class="cycle-loop">↻ The body re-excretes pollutants back into air, water and soil — closing the loop.</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Pollution explorer</h2>
+        <span class="meta">5 views · air · water · food</span>
+      </div>
+      <PollutionDashboard client:load />
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="section-head"><h2>Water contaminants of concern</h2></div>
+          <p>Beyond access, the question is what's <em>in</em> the water. These are the contaminants with the widest reach and the heaviest harm.</p>
+          <div class="therm">
+            {waterContaminants.map((c) => (
+              <div class={`tb ${c.sev}`}>
+                <div class="band" style="min-width:150px;">{c.name}</div>
+                <div class="eff"><b>{c.exposed}</b> — {c.harm}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div class="section-head"><h2>Spotlight: lead</h2></div>
+          <p>
+            Lead is the clearest case of the cycle's cost: a neurotoxin with no safe level, moving from
+            old pipes, paint, soil and informal recycling into children's blood — and into adult
+            cardiovascular disease decades later.
+          </p>
+          <div class="grid" style="gap:14px;">
+            {leadFacts.map((f) => (
+              <div class="stat amber">
+                <div class="num">{f.num}</div>
+                <div class="label">{f.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="callout navy">
+        <div class="co-label">Pollution × heat</div>
+        <p class="mb-0">{pollutionHeatCoupling}</p>
+      </div>
+      <p style="margin-top:22px;">
+        For the full mechanism — how each stage feeds the next, and where mitigation actually bites —
+        read the <a href="/reports/pollution-cycle/">pollution-cycle report</a>, or see how PM₂.₅ ranks
+        among century problems in the <a href="/crisis-index/">Crisis Index</a>.
+      </p>
+      <div class="hero-actions" style="margin-top:8px;">
+        <a href="/reports/pollution-cycle/" class="btn btn--sig">Read the pollution-cycle report <span class="arr">→</span></a>
+        <a href="/dashboards/" class="btn btn--ghost">All dashboards</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,82 @@
+---
+import Base from "../../../layouts/Base.astro";
+import ClimateDashboard from "../../../components/charts/ClimateDashboard.tsx";
+import { climateHeadline, tippingPoints, climateCoupling } from "../../../data/climate";
+---
+
+<Base
+  title="Climate & Global Warming Dashboard"
+  description="Global warming trajectories, CO₂ emissions by region, sea-level rise, and climate tipping points — the forcing function beneath the index."
+>
+  <header class="page-head">
+    <div class="container page-head-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / <a href="/dashboards/">Dashboards</a> / Climate</div>
+      <span class="kicker">Climate · Global warming</span>
+      <h1>Climate and global warming</h1>
+      <p class="lede">
+        Warming is the forcing function beneath most of the index. The same fossil combustion that
+        warms the planet emits the particulates that pollute the air — and the warming it drives
+        intensifies heat, drought, sea-level rise and crop stress at once.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid g-4">
+        {climateHeadline.map((h) => (
+          <div class="stat sig">
+            <div class="num">{h.num}</div>
+            <div class="label">{h.label}</div>
+            <div class="src">{h.src}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Climate explorer</h2>
+        <span class="meta">3 views · warming · emissions · sea</span>
+      </div>
+      <ClimateDashboard client:load />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="section-head"><h2>Tipping elements</h2></div>
+          <p>
+            Beyond gradual warming sit thresholds that, once crossed, commit the system to large changes
+            over centuries — several within reach near 1.5°C.
+          </p>
+          <div class="therm">
+            {tippingPoints.map((t) => (
+              <div class={`tb ${t.sev}`}>
+                <div class="band" style="min-width:150px;">{t.element}</div>
+                <div class="eff"><b>{t.threshold}</b> — {t.impact}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div class="section-head"><h2>Why it's the master lever</h2></div>
+          <div class="callout navy" style="margin-top:0;">
+            <div class="co-label">Coupling</div>
+            <p class="mb-0">{climateCoupling}</p>
+          </div>
+          <p style="margin-top:20px;">
+            Because warming sits upstream of heat, water, sea-level and much of pollution, decarbonization
+            is the one action that bends multiple curves at once. See how the downstream heat plays out in
+            the <a href="/dashboards/heat/">heat dashboard</a>, and how mitigation sequences in the
+            <a href="/mitigation/"> framework</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

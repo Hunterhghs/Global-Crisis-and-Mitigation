@@ -1,0 +1,67 @@
+---
+import Base from "../../../layouts/Base.astro";
+import DemographicsDashboard from "../../../components/charts/DemographicsDashboard.tsx";
+import { demoHeadline, divergenceNarrative, demoCoupling } from "../../../data/demographics";
+---
+
+<Base
+  title="Demographic Shifts Dashboard"
+  description="The great demographic divergence — Sub-Saharan Africa's rise versus Europe's and East Asia's decline, median age, and old-age dependency."
+>
+  <header class="page-head">
+    <div class="container page-head-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / <a href="/dashboards/">Dashboards</a> / Demographics</div>
+      <span class="kicker">Demographic shifts</span>
+      <h1>The great demographic divergence</h1>
+      <p class="lede">
+        The century's population splits in two: an aging, shrinking Europe and East Asia, and a young,
+        roughly tripling Sub-Saharan Africa. The next two billion people arrive largely in the regions
+        facing the worst heat, water and grid exposure.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid g-4">
+        {demoHeadline.map((h) => (
+          <div class="stat sig">
+            <div class="num">{h.num}</div>
+            <div class="label">{h.label}</div>
+            <div class="src">{h.src}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Demographics explorer</h2>
+        <span class="meta">3 views · population · age · dependency</span>
+      </div>
+      <DemographicsDashboard client:load />
+      <div class="callout" style="margin-top:26px;">
+        <div class="co-label">The divergence</div>
+        <p class="mb-0">{divergenceNarrative}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container narrow">
+      <div class="callout navy">
+        <div class="co-label">Why it couples</div>
+        <p class="mb-0">{demoCoupling}</p>
+      </div>
+      <p style="margin-top:22px;">
+        Demography is why <strong>exposure</strong> and <strong>population</strong> rise together this
+        century: growth concentrates in hot, low-buffer regions while aging raises heat-mortality risk in
+        the North. See <a href="/dashboards/heat/">heat exposure</a>,
+        <a href="/dashboards/inequality/"> inequality</a>, and the
+        <a href="/reports/regional-outlook/"> regional outlook</a>.
+      </p>
+    </div>
+  </section>
+</Base>

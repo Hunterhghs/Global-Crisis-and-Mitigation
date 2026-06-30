@@ -1,43 +1,98 @@
 ---
 import Base from "../../layouts/Base.astro";
-import HeatDashboard from "../../components/charts/HeatDashboard.tsx";
-import RegionDashboard from "../../components/charts/RegionDashboard.tsx";
-import { deviceThermal, nicheExceedance } from "../../data/heat";
-import { unsafeTiers } from "../../data/regions";
+import { pollutionHeadline } from "../../data/pollution";
+
+const dashboards = [
+  {
+    href: "/dashboards/pollution/",
+    kicker: "Pollution cycle",
+    title: "Air, water & food contamination",
+    body: "The most pervasive crisis on the index: PM₂.₅ by region and source, drinking-water access, food-chain contamination, and how pollutants cycle through every medium into the body.",
+    tag: "Featured",
+    views: "5 views",
+  },
+  {
+    href: "/dashboards/climate/",
+    kicker: "Climate & global warming",
+    title: "Warming paths, emissions & sea level",
+    body: "The forcing function beneath the index: warming trajectories to 2100, CO₂ emissions by region, sea-level rise, and the tipping elements within reach near 1.5°C.",
+    tag: "Climate",
+    views: "3 views",
+  },
+  {
+    href: "/dashboards/heat/",
+    kicker: "Heat & devices",
+    title: "Heat, WBGT & regional exposure",
+    body: "Late-century peaks in air, feels-like and work-safety (WBGT) temperature; lived mean temperature; device thermal limits; and the share of each region in unsafe conditions.",
+    tag: "Climate",
+    views: "3 explorers",
+  },
+  {
+    href: "/dashboards/inequality/",
+    kicker: "Inequality & poverty",
+    title: "Wealth, income & the equity gap",
+    body: "Global wealth and income concentration, the stalled decline of extreme poverty, and the gap between who causes climate harm and who carries it.",
+    tag: "Social",
+    views: "4 views",
+  },
+  {
+    href: "/dashboards/demographics/",
+    kicker: "Demographic shifts",
+    title: "Africa's rise, Europe's decline",
+    body: "The great divergence: Sub-Saharan Africa's tripling versus Europe's and East Asia's contraction, median age, and the old-age dependency squeeze.",
+    tag: "Social",
+    views: "3 views",
+  },
+  {
+    href: "/dashboards/cybercrime/",
+    kicker: "Cybercrime & digital",
+    title: "The friction tax on the digital layer",
+    body: "The trajectory of cybercrime cost, attack types, most-targeted sectors, and the digital divide that shapes who is exposed and who is left offline.",
+    tag: "Digital",
+    views: "4 views",
+  },
+  {
+    href: "/dashboards/cascades/",
+    kicker: "Secondary effects",
+    title: "Cascades: battery waste, feels-like heat",
+    body: "The second-order effects that often outweigh the first: battery and e-waste growth, feels-like city temperatures, and the compound heat-pollution stress facing most of humanity.",
+    tag: "Cascade",
+    views: "3 views",
+  },
+];
 ---
 
 <Base
   title="Dashboards"
-  description="Interactive dashboards: late-century heat, feels-like and WBGT, lived mean temperature, device thermal limits, and regional exposure shares."
+  description="Interactive dashboards across the century's pressing issues — pollution, heat, inequality and cybercrime — with the data behind each."
 >
   <header class="page-head">
     <div class="container page-head-inner">
       <div class="breadcrumb"><a href="/">Home</a> / Dashboards</div>
       <span class="kicker">Interactive data</span>
-      <h1>Heat, devices and regional exposure</h1>
+      <h1>Dashboards across the century's pressing issues</h1>
       <p class="lede">
-        The metrics that decide functional outcomes — not just headline temperature. Toggle between
-        air, feels-like and work-safety (WBGT) heat; switch °C/°F; and compare how much of each region
-        lives in unsafe conditions.
+        One framework, many pressures. Each dashboard isolates a structural problem — pollution, heat,
+        inequality, cybercrime — and lets you explore the data behind it. They are not separate stories:
+        every one couples to the others through the same systems.
       </p>
     </div>
   </header>
 
   <section class="section">
     <div class="container">
-      <div class="section-head">
-        <h2>Heat explorer</h2>
-        <span class="meta">3 views · °C / °F</span>
-      </div>
-      <HeatDashboard client:load />
-
-      <div class="callout" style="margin-top:26px;">
-        <div class="co-label">Three metrics, three questions</div>
-        <p class="mb-0">
-          <strong>Air (dry-bulb)</strong> answers "how hot is the day." <strong>Feels-like</strong> (heat
-          index) adds humidity for human discomfort. <strong>WBGT</strong> is the work-safety metric —
-          above ~30.5°C in sun, sustained outdoor labor becomes unsafe. They are not interchangeable.
-        </p>
+      <div class="grid g-2">
+        {dashboards.map((d) => (
+          <a href={d.href} class="card card--link">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+              <span class="card-kicker">{d.kicker}</span>
+              <span class="tag">{d.tag}</span>
+            </div>
+            <h3>{d.title}</h3>
+            <p>{d.body}</p>
+            <span class="card-foot">Open dashboard · {d.views} <span class="arr">→</span></span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -45,77 +100,26 @@ import { unsafeTiers } from "../../data/regions";
   <section class="section section--alt">
     <div class="container">
       <div class="section-head">
-        <h2>The mean-temperature niche</h2>
-        <span class="meta">Cities crossing &gt;29°C MAT</span>
+        <h2>The largest burden: pollution</h2>
+        <span class="meta">Why it leads the dashboards</span>
       </div>
-      <div class="grid g-3">
-        {nicheExceedance.map((n) => (
+      <div class="grid g-4">
+        {pollutionHeadline.map((h) => (
           <div class="stat sig">
-            <div class="num">{n.cities}<span class="unit">cities</span></div>
-            <div class="label">cross a &gt;29°C mean annual temperature in <b>{n.period}</b></div>
-            <div class="src">≈{n.pop}M residents · Scientific Reports 2025</div>
+            <div class="num">{h.num}</div>
+            <div class="label">{h.label}</div>
+            <div class="src">{h.src}</div>
           </div>
         ))}
       </div>
-      <p class="note" style="margin-top:18px;">
-        Mean annual temperature (MAT) is the chronic-niche metric: it measures the climate people live
-        inside year-round, not the single hottest afternoon. Crossing ~29°C MAT pushes a city outside
-        the historical human niche.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <h2>Regional exposure</h2>
-        <span class="meta">Share in unsafe conditions</span>
-      </div>
-      <RegionDashboard client:load />
-    </div>
-  </section>
-
-  <section class="section section--alt">
-    <div class="container">
-      <div class="two-col">
-        <div>
-          <div class="section-head"><h2>Heat & your devices</h2></div>
-          <p>
-            Heat is not only a human problem — it throttles the infrastructure of modern work.
-            Lithium-ion charging slows or pauses, silicon down-clocks to protect itself, and sustained
-            workloads fall below spec. Ambient temperature, not just the chip, sets the ceiling.
-          </p>
-          <div class="therm">
-            {deviceThermal.map((d) => (
-              <div class={`tb ${d.sev}`}>
-                <div class="band">{d.band}</div>
-                <div class="eff">{d.effect}</div>
-              </div>
-            ))}
-          </div>
-          <p class="note" style="margin-top:14px;">
-            In cities where afternoon ambient sits at 38–45°C, phones and laptops operate in the
-            throttle-or-pause band for hours daily — a quiet tax on productivity and learning.
-          </p>
-        </div>
-        <div>
-          <div class="section-head"><h2>The four unsafe tiers</h2></div>
-          <p>"Unsafe" is layered. Most people already live in Tier A; the physiological tail (Tier D) is rare but absolute.</p>
-          <div class="table-wrap">
-            <table class="data">
-              <thead><tr><th>Tier</th><th>Definition</th><th>Today</th></tr></thead>
-              <tbody>
-                {unsafeTiers.map((t) => (
-                  <tr>
-                    <td><b>{t.tier}</b></td>
-                    <td>{t.def}</td>
-                    <td class="num-cell">{t.today}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="callout" style="margin-top:26px;">
+        <div class="co-label">A coupled system</div>
+        <p class="mb-0">
+          Pollution kills more people each year than war, hunger and most disease categories — and it
+          moves. Air settles into water, water irrigates soil, soil feeds crops, crops reach the body.
+          The <a href="/dashboards/pollution/">pollution dashboard</a> and the
+          <a href="/reports/pollution-cycle/"> pollution-cycle report</a> trace that loop end to end.
+        </p>
       </div>
     </div>
   </section>
